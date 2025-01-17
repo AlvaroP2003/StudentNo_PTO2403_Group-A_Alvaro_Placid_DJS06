@@ -68,43 +68,46 @@ const products = [
 
 // Advance Exercise 1 ✅
 
-// console.log(products.map(item => item.product))
+products.map(item => console.log(item.product)) // Using built-in map() function to log out an array of names
 
 // Advance Excercise 2 ✅
 
-// console.log(products.filter(item => item.product.length <= 5))
+console.log(products.filter(item => item.product.length <= 5)) // Returning a new array with with characters that only have 5 or less characters
 
 
 // Advance Excericse 3 ✅
 
-// console.log(products.map(item => Number(item.price)).reduce((accumulator, currentValue) => {
-//   return accumulator + currentValue
-// }, 0))
+console.log(products.map(item => Number(item.price)).reduce((accumulator, currentValue) => { // Firstly returning an array of only numbers. Then using the reduce function to add every number in that array to result in the sum.
+  return accumulator + currentValue
+}, 0))
 
 
 // Advance Excercise 4 ✅
 
-// console.log(products.reduce((acc,item) => {
-//   return acc + item.product
-// },''))
+console.log(products.reduce((acc,item) => {  // Using the reduce function to add every currentvalue[item] that has the property 'product' to the nxt value which concatenates the strings.
+  return acc + item.product
+},''))
 
 // Advance Excerice 5 ✅
 
-// console.log(`Highest: ${Math.max(...products.map(item => Number(item.price)).filter(number => number > 0))}
-// Lowest:${Math.min(...products.map(item => Number(item.price)).filter(number => number > 0))}`)
+// Converting strings to numbers in the products object. Filtering out any number below zero seeing as converting an empty string "" to a number results in 0 which would make the lowest number 0. So filtering it out makes the logic correct.
+// Using Math.max() and Math.min() to find the lowest and highest values in the array.
+// All wrapped in template literals to match required format
 
+console.log(`Highest: ${Math.max(...products.map(item => Number(item.price)).filter(number => number > 0))}
+Lowest:${Math.min(...products.map(item => Number(item.price)).filter(number => number > 0))}`)
 
 // Advance Excericse 6 ✅
 
 console.log(
   products.map(item =>
-    Object.entries(item).reduce((obj, [key, value]) => {
-      if (key === 'product') {
-        obj['name'] = value;
+    Object.entries(item).reduce((obj, [key, value]) => { // Looping throught object using Object.entries
+      if (key === 'product') {                            // Using if() statment to see if value matches 'product'
+        obj['name'] = value;                              // If value matches it will assign new value to the newly created  object property obj[name] and/or object[cost]
       } else if (key === 'price') {
         obj['cost'] = value;
       }
-      return obj;
+      return obj; // Returning new object
     }, {})
   )
 );
