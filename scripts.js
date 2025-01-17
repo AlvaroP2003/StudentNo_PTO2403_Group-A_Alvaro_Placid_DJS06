@@ -6,59 +6,54 @@ const names = ['Ashwin', 'Sibongile', 'Jan-Hendrik', 'Sifso', 'Shailen', 'Frikki
 
 
 
-// Exercise 1 
+// Exercise 1 ✅
 
-// names.forEach(name => console.log(name));
-// provinces.forEach(province => console.log(province))
+names.forEach(name => console.log(name)); // Using a forEach() just to log out the names of students.
+provinces.forEach(province => console.log(province)) // Same forEach() just loggin out the provinces.
 
-// names.forEach((name,index) => {
-//   console.log(`${name} (${provinces[index]})`)
-// })
-
-
-// Excercise 2
-
-// const provinceUppercase  = provinces.map(province => province.toUpperCase(province))
-
-// console.log(provinceUppercase)
-
-
-// Excercise 3
-
-const nameLegnthsArr = names.map(name => name.length)
-
-
-// Excercise 4
-
-const provinceSorted = provinces.sort()
-
-
-// Excercise 5
-
-// const provinceFiltered = provinces.filter(province => !province.includes('Cape'))
-
-// console.log(provinceFiltered.length)
-
-
-// Excercise 6
-
-const nameContainsS = names.map(name => {
-  return [...name].some(character => character === 'S')
+names.forEach((name,index) => { // Looping through the names array and including the index to match the index of the provinces to assign each name with a province.
+  console.log(`${name} (${provinces[index]})`) // Using template literal to log out all names and then using the index to include the province names.
 })
 
 
-// console.log(nameContainsS)
+// Excercise 2 ✅
+
+const provinceUppercase  = provinces.map(province => province.toUpperCase(province)) // Using the map method and toUpperCase functions to return an array of elemetns all in uppercase
+
+console.log(provinceUppercase) // Loggin out the new array to the console
 
 
-// Excercise 7
+// Excercise 3 ✅
+
+const nameLegnthsArr = names.map(name => name.length) // Using map mathod to return the length of character that each element in the array contain
 
 
-const nameProvinceMapping = names.reduce((acc, name, index) => {
-  acc[name] = provinces[index]; 
+// Excercise 4 ✅
+
+const provinceSorted = provinces.sort() // Used the built-in .sort() function to sort the provinces alphabetically
+
+
+// Excercise 5 ✅
+
+const provinceFiltered = provinces.filter(province => !province.includes('Cape')) // Using the built-in .filter() function to retrun an array with elements that don't contain the word 'Cape'
+
+console.log(provinceFiltered.length) // Logging out the count/lenght of the remaining elements
+
+
+// Excercise 6 ✅
+
+const nameContainsS = names.map(name => {
+  return [...name].some(character => character === 'S') // Using the built-in map method to return array, and then using the .some() function to see if the character equal the letter 'S"
+})
+
+
+// Excercise 7 ✅
+
+
+const nameProvinceMapping = names.reduce((acc, name, index) => { // Using the .reduce() function to manipulate elements
+  acc[name] = provinces[index]; // Setting the accumulator as name and assigning the respective province to it
   return acc;
-}, {});
-
-// console.log(nameProvinceMapping);
+}, {}); // Returns accumulator to an empty object
 
 
 // A list of products with prices:
@@ -93,9 +88,23 @@ const products = [
 //   return acc + item.product
 // },''))
 
-// Advance Excerice 5 ☣️
+// Advance Excerice 5 ✅
 
-// console.log(products.map(item => Number(item.price)).filter(number => number))
+// console.log(`Highest: ${Math.max(...products.map(item => Number(item.price)).filter(number => number > 0))}
+// Lowest:${Math.min(...products.map(item => Number(item.price)).filter(number => number > 0))}`)
 
 
-// Advance Excericse 6 ☣️
+// Advance Excericse 6 ✅
+
+console.log(
+  products.map(item =>
+    Object.entries(item).reduce((obj, [key, value]) => {
+      if (key === 'product') {
+        obj['name'] = value;
+      } else if (key === 'price') {
+        obj['cost'] = value;
+      }
+      return obj;
+    }, {})
+  )
+);
